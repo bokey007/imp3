@@ -22,7 +22,7 @@ imp3.run --port 8080
 Above command can be used to specify the port on which you want to run the app.
 
 ## UI
-![](https://github.com/bokey007/imp3/blob/main/media/demo.gif)
+![](https://github.com/bokey007/imp3/blob/main/media/demo.png)
 
 # Following is the list of currently supported operations:
 
