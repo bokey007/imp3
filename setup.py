@@ -4,9 +4,17 @@ from setuptools import setup, find_packages
 # with open('requirements.txt') as f:
 #     install_requires = f.read().splitlines()
 
+with open('README.md', 'r') as f:
+    long_description = f.read()
+
 setup(
     name='imp3',
     version='0.1.0',
+    author='Sudhir Arvind Deshmukh',
+    description='Interactive tool for image pre-processing and automated pipeline creation',
+    long_description=long_description,
+    long_description_content_type='text/markdown',
+    url='https://github.com/bokey007/imp3',
     packages=find_packages(),
     install_requires=[
         'matplotlib==3.6.0',
@@ -27,6 +35,6 @@ setup(
 #how to build this file
 
 # pip uninstall imp3
-# python setup.py sdist
+# python setup.py sdist bdist_wheel
 # pip install ./dist/imp3-0.1.0.tar.gz
 # imp3.run

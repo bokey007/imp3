@@ -78,3 +78,6 @@ Development tools:
 
 1. setuptools (https://pypi.org/project/setuptools/): Used to create a python package
 2. pipreqs (https://pypi.org/project/pipreqs/): Used to create requirements.txt file
+3. twine (https://pypi.org/project/twine/): Used to upload the package to pypi.org
+4. Github Actions (): Used to automate the process of uploading the package to pypi.org
+
