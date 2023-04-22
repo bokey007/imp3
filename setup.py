@@ -9,7 +9,7 @@ with open('README.md', 'r') as f:
 
 setup(
     name='imp3',
-    version='0.1.3',
+    version='0.1.4',
     author='Sudhir Arvind Deshmukh',
     description='Interactive tool for image pre-processing and automated pipeline creation',
     long_description=long_description,
