@@ -9,7 +9,7 @@ with open('README.md', 'r') as f:
 
 setup(
     name='imp3',
-    version='0.1.0',
+    version='0.1.1',
     author='Sudhir Arvind Deshmukh',
     description='Interactive tool for image pre-processing and automated pipeline creation',
     long_description=long_description,
@@ -38,3 +38,4 @@ setup(
 # python setup.py sdist bdist_wheel
 # pip install ./dist/imp3-0.1.0.tar.gz
 # imp3.run
+# twine upload dist/*
