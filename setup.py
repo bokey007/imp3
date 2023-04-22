@@ -32,7 +32,7 @@ setup(
     zip_safe=False,
 )
 
-#how to build this file
+#how to build test and bublish this pkg
 
 # pip uninstall imp3
 # python setup.py sdist bdist_wheel
