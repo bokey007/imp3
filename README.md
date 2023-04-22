@@ -1,5 +1,5 @@
-# im_pre-preocessing
-Interactive image pre-processing app that automatically created image processing pipeline for the desired parameters
+# imp3 (Image pre-preocessing pipeline) :
+Interactive tool for image pre-processing and automated pipeline creation
 
 # Following is the list of included pre_preocessors
 
