@@ -37,6 +37,7 @@ def main():
 
         #user input to resize the image or not
         # create a hprizontal line
+        # Section 0: resize the image
         st.markdown("""---""")
         st.subheader("resize input image")
         resize = st.radio('resize the image?', ['no', 'yes'], horizontal=True,)
@@ -60,6 +61,8 @@ def main():
                 st.image(im)
                 st.write("resolution of resized image: ", im.shape)
 
+
+        # Section 1: map the image to different color spaces
         st.markdown("""---""")
         st.subheader("map input image to different color spaces")
         #step 1: map the colore spce
@@ -113,22 +116,7 @@ def main():
                 #im = cv2.merge([ch1, ch3])
                 st.image(im)
 
-        st.markdown("""---""")
-        st.subheader("Brightness and contrast")
-        st.sidebar.subheader("Controls for Brightness and contrast")
-        #step 2: change the brightness and contrast
-        col1, col2 = st.columns( [0.5, 0.5])
-        with col1:
-            st.image(im)
-            st.write("current state of the image")
-        with col2:
-            st.sidebar.markdown("""---""")
-            brightness = st.sidebar.slider('brightness', -100, 100, 0)
-            contrast = st.sidebar.slider('contrast', -100, 100, 0)
-            im = cv2.addWeighted(im, 1 + contrast/100., im, 0, brightness)
-            st.image(im)
-            st.write("Output image after brightness and contrast adjustment")
-
+        # Section 3: Smoothing
         st.markdown("""---""")
         st.subheader("smooting")
         blur_method = st.radio('chage to following color space:', ['None','Averaging', 'Gaussian', 
@@ -168,10 +156,28 @@ def main():
                 im = cv2.bilateralFilter(im,sigma_color,sigma_space,sigma_space)
                 st.image(im)
         
+        # Section 2: change the brightness and contrast
+        st.markdown("""---""")
+        st.subheader("Brightness and contrast")
+        st.sidebar.subheader("Controls for Brightness and contrast")
+        #step 2: change the brightness and contrast
+        col1, col2 = st.columns( [0.5, 0.5])
+        with col1:
+            st.image(im)
+            st.write("current state of the image")
+        with col2:
+            st.sidebar.markdown("""---""")
+            brightness = st.sidebar.slider('brightness', -100, 100, 0)
+            contrast = st.sidebar.slider('contrast', -100, 100, 0)
+            im = cv2.addWeighted(im, 1 + contrast/100., im, 0, brightness)
+            st.image(im)
+            st.write("Output image after brightness and contrast adjustment")
+
+        # Section 4: intensity histogram and histogram equalization
         st.markdown("""---""")
         st.subheader("Histogram")
         
-        hist_radio = st.radio('Compute Histogram:', ['None','Histogram', 'Histigram_equilisation'], horizontal=True,)
+        hist_radio = st.radio('Compute Histogram:', ['None','Histogram', 'Simple Histigram_equilisation (NEED GRAY SCALE AS INPUT)', 'Adaptive Histogram Equalization (CLAHE) (NEED GRAY SCALE AS INPUT)'], horizontal=True,)
 
         col11, col12 = st.columns( [0.5, 0.5])
 
@@ -207,15 +213,23 @@ def main():
                             plt.xlim([0, 256])
 
                     st.pyplot(plt.figure(1))
-
-
-            elif hist_radio == "Histigram_equilisation":
+            elif hist_radio == "Simple Histigram_equilisation (NEED GRAY SCALE AS INPUT)":
+                st.sidebar.markdown("""---""")
+                # code for histogram equalization
+                im = cv2.equalizeHist(im)
+                st.image(im)
+            elif hist_radio == "Adaptive Histogram Equalization (CLAHE) (NEED GRAY SCALE AS INPUT)":
                 st.sidebar.markdown("""---""")
                 st.sidebar.subheader("Controls for Histigram_equilisation")
-                filter_hist = st.sidebar.slider('Adjust the filter size', min_value=1, max_value=11, value=5, step=2)
-                im = cv2.blur(im,(filter_hist,filter_hist))
+                # User input for CLAHE
+                clipLimit = st.sidebar.slider('Adjust the clip limit', min_value=1, max_value=10, value=2, step=1)
+                tileGridSize = st.sidebar.slider('Adjust the tile grid size', min_value=1, max_value=10, value=8, step=1)
+                # code for histogram equalization using CLAHE
+                clahe = cv2.createCLAHE(clipLimit=clipLimit, tileGridSize=(tileGridSize,tileGridSize))
+                im = clahe.apply(im)
                 st.image(im)
 
+        # Section 5: thresholding
         st.markdown("""---""")
         st.subheader("thresholding")
         st.sidebar.subheader("Controls for thresholding")
@@ -270,7 +284,7 @@ def main():
                 st.image(im)
                 st.write("Otsu threshold is :", ret)
                 
-
+        # Section 6: edge detection
         st.markdown("""---""")
         st.subheader("canny")
         edge_option = st.radio('Edge detection:', ['None', 'Sobel','Lanlasian', 'Canny'], horizontal=True,)
@@ -300,6 +314,7 @@ def main():
                 im = cv2.Canny(im, slider3, slider4)
                 st.image(im)
         
+        # Section 7: dialate/erode
         st.markdown("""---""")
         st.subheader("Dialate/Erode")
         dia_ero_option = st.radio('Operations o0n the detected edges:', ['None', 'Dialate','Erode'], horizontal=True,)
@@ -328,6 +343,7 @@ def main():
                 im = cv2.GaussianBlur(im,(slider,slider),0)
                 st.image(im)
 
+        # Section 8: find contours
         st.markdown("""---""")
         st.subheader("find countours")
         contour_option = st.radio('Operations o0n the detected edges:', ['None','Detect contours'], horizontal=True,)
@@ -390,13 +406,17 @@ def main():
                     
                 st.image(img_cont)
         
+        # Section 9: shape matching with Hu moment on contour
         st.markdown("""---""")
         st.subheader("shape matching with Hu moment on contour")
+        # Section 10: feature extraction
         st.markdown("""---""")
         st.subheader("Feature extraction")
         st.markdown("""---""")
+        # Section 11: feature matching
         st.subheader("Feature Matching")
         st.markdown("""---""")
+        # Section 12: template matching and removal
         st.subheader("Template matching and removal, expecting gray image as imput template image can be color or gray")
         
         template_option = st.radio('options for template detection:', ['None','template matching'], horizontal=True,)

@@ -1,78 +1,83 @@
 # imp3 (Image pre-preocessing pipeline) :
 Interactive tool for image pre-processing and automated pipeline creation
 
-# Following is the list of included pre_preocessors
+## Installation
+run following command in terminal
+```bash
+pip install imp3
+```
 
-## 0. read_im
+## Usage
+```bash
+imp3.run
+```
+- Above command will lauch the app on default port 8501. 
+- Open the browser and go to http://localhost:8501
+- Select the image and then select the appropriate set of operations you want to perform on that perticular image. 
+- play with the parameters interatively untill you reach at optimal configuration.
+
+```bash
+imp3.run --port 8080
+```
+Above command can be used to specify the port on which you want to run the app.
+
+## UI
+add video 
+![alt text](media/demo.gif)
+
+# Following is the list of currently supported operations:
+
+## 0. Resize input image
+
+## 1. map the image to different color spaces
     Folowwing methods are available:
-    a. read_to_openCV
-    b. 
+    a. 'rgb'
+    b. 'Gray scale'
+    c. 'hsv', 
+    d. 'lab', 
+    e. 'brg', 
+    f. 'ch_one',
+    g. 'ch_two',
+    h. 'ch_three',
+    i. 'merge_first_two_ch',
+    j. 'merge_last_two_ch', 
+    k. 'merge_last_first_ch'
 
-## 1. map_colore_space
-    Folowwing methods are available:
-    a. rgb_to_gray
-    b. rgb_to_hsv
-    c. rgb_to_lab
-    d. rgb_to_brg
-    e. ch_one
-    f. ch_two
-    g. ch_three
-    h. merge_first_two_ch
-    i. merge_last_two_ch
+## 2. change the brightness and contrast
 
-## Brightness and Contrast
-
-## 3. hist and hiss=togram equilisation
-    Folowwing methods are available:
-    a. 
-
-## 2. smooth
+## 3. Smoothingth
     Folowwing methods are available:
     a. avg
     b. gaussian
     c. median
     d. bilateral
-    
-    
 
-## 4. threshold
+## 4. intensity histogram and histogram equalization
+
+## 5. thresholding
     Folowwing methods are available:
     a. thresh
     b. adaptive_thresh
     c. otsu
-    d. 
-    
 
-## 5. edge
+## 6. edge detection
     Folowwing methods are available:
     a. sobel
     b. laplasian
     c. canny
-    d. 
+
+
+## 7. dialate / erode
+
+## 8. find countours
+
+## 9. shape matching with Hu moment on contour
+
+## 10. feature extraction
     
+## 11. Feature Matching
 
-## 6. dialate
-    Folowwing methods are available:
-    a. 
-
-
-## 7. erode
-    Folowwing methods are available:
-    a.
-
-
-## 8. contour
-    Folowwing methods are available:
-    a. avg
-    b. gaussian
-    c. median
-    d. bilateral
-
-## 9. shape detection
-    
-## 10. Hough Transform
-
-## 11. harr cascade
+## 12. Template matching and removal
     
 Development tools:
 
