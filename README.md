@@ -80,4 +80,6 @@ Development tools:
 2. pipreqs (https://pypi.org/project/pipreqs/): Used to create requirements.txt file
 3. twine (https://pypi.org/project/twine/): Used to upload the package to pypi.org
 4. Github Actions (): Used to automate the process of uploading the package to pypi.org
+5. pytest (https://pypi.org/project/pytest/): Used to write unit tests
+6. wheel (https://pypi.org/project/wheel/): Used to create a wheel file
 
