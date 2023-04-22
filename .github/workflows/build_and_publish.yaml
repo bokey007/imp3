@@ -41,7 +41,7 @@ jobs:
         uses: pypa/gh-action-pypi-publish@master
         with:
           user: __token__
-          password: ${{ secrets.PYPI_API_TOKEN }}
+          password: ${{ secrets.PYPI_MASTER_TOKEN }}
           repository_url: https://upload.pypi.org/legacy/
           distributions: sdist bdist_wheel
           skip_existing: true
