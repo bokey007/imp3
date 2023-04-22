@@ -23,7 +23,7 @@ Above command can be used to specify the port on which you want to run the app.
 
 ## UI
 add video 
-![alt text](media/demo.gif)
+![alt text](https://github.com/bokey007/imp3/blob/main/media/demo.gif)
 
 # Following is the list of currently supported operations:
 
